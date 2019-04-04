@@ -76,9 +76,9 @@ class Trainer:
                 
     def _validate(self):
         self.model.eval()
-        
         batches = 0
         batch_losses = []
+        
         with torch.no_grad():
             for sample in self.val_dataloader:
                 
@@ -99,7 +99,6 @@ class Trainer:
     
     
     def _write_logs(self, epoch, mean_train_loss, mean_val_loss):
-
         if epoch==1:
             with open(self.log_file, 'w') as fp:
                 fp.write('epoch,train_loss,val_loss\n')
@@ -111,7 +110,6 @@ class Trainer:
     
     
     def _save_model(self, epoch, regularity):
-        
         torch.save({'model': self.model.state_dict()}, 
                    self.final_weights_file)
             
@@ -120,8 +118,6 @@ class Trainer:
                        'experiment/' + self.exp_name + '/weights_' + str(epoch).zfill(3) + '.pth') 
         return
     
-    
-
 
 if __name__ == '__main__':
     
